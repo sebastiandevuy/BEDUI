@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct BEComponent: Decodable {
     
@@ -18,6 +19,7 @@ struct BEComponent: Decodable {
     /// Determines the current state of the entity by hashing its content
     let hash: String
     
+    /// Payload with relevant view data. To be decoded when needed to the appropriate entity.
     let content: Data?
     
     private enum CodingKeys : String, CodingKey {
@@ -37,3 +39,4 @@ struct BEComponent: Decodable {
         content = data
     }
 }
+

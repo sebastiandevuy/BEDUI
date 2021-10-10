@@ -19,6 +19,7 @@
 		2F1CB07B27135452008680A7 /* BEComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB07A27135452008680A7 /* BEComponent.swift */; };
 		2F1CB07D271355F9008680A7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB07C271355F9008680A7 /* Decodable+Extensions.swift */; };
 		2F1CB08027135A05008680A7 /* SDUIInitialDraft.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */; };
+		2F1CB0822713924D008680A7 /* AlchemistLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		2F1CB07A27135452008680A7 /* BEComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BEComponent.swift; sourceTree = "<group>"; };
 		2F1CB07C271355F9008680A7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SDUIInitialDraft.json; sourceTree = "<group>"; };
+		2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemistLiteManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				2F1CB07A27135452008680A7 /* BEComponent.swift */,
 				2F1CB07C271355F9008680A7 /* Decodable+Extensions.swift */,
+				2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */,
 			);
 			path = Alchemist;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				2F1CB04E27135423008680A7 /* ViewController.swift in Sources */,
 				2F1CB04A27135423008680A7 /* AppDelegate.swift in Sources */,
+				2F1CB0822713924D008680A7 /* AlchemistLiteManager.swift in Sources */,
 				2F1CB07B27135452008680A7 /* BEComponent.swift in Sources */,
 				2F1CB04C27135423008680A7 /* SceneDelegate.swift in Sources */,
 				2F1CB07D271355F9008680A7 /* Decodable+Extensions.swift in Sources */,
