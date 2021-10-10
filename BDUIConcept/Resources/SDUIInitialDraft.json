@@ -1,0 +1,20 @@
+[
+	{
+		"id": "firstId",
+		"type": "fistType",
+		"hash": "123456789",
+		"content": {
+			"name": "sebastian",
+			"age": 40
+		}
+	},
+	{
+		"id": "secondId",
+		"type": "secondType",
+		"hash": "987654321",
+		"content": {
+			"isTrue": true,
+			"title": "hola mundo"
+		}
+	}
+]
