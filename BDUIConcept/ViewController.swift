@@ -8,30 +8,48 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private var broker: AlchemistLiteBroker!
+    private let stackView = UIStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         
         //1 - Register Components
         AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "fistType", onInitialization: { component in
-            print("handle init")
-            fatalError()
+            return try? Component1(id: component.id, hash: component.hash, type: component.type, data: component.content)
         }))
         
         AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "secondType", onInitialization: { component in
-            print("handle init")
-            fatalError()
+            return try? Component2(id: component.id, hash: component.hash, type: component.type, data: component.content)
         }))
         
-        guard let bundlePath = Bundle.main.path(forResource: "SDUIInitialDraft", ofType: "json"),
-              let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8),
-              let deserialized = try? JSONDecoder().decode([BEComponent].self, from: jsonData) else {
-                  return
+        
+        //2 - Obtain a broker - Probably with params in order to set the endpoint to be called. TBD
+        broker = AlchemistLiteManager.shared.getViewBroker()
+        
+        broker.loadViews { result in
+            switch result {
+            case .success(let views):
+                DispatchQueue.main.async { [weak self] in
+                    self?.stackView.arrangedSubviews.forEach({$0.removeFromSuperview()})
+                    views.forEach({ self?.stackView.addArrangedSubview($0) })
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
-        let d = 4
-        print(deserialized)
     }
-
-
+    
+    private func setupView() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                                     stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor),
+                                     stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                                     stackView.rightAnchor.constraint(equalTo: view.rightAnchor)])
+    }
 }
 
