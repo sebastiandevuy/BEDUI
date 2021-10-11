@@ -10,6 +10,8 @@ import UIKit
 
 class AlchemistLiteBroker {
     private var currentSessionComponents = [AlchemistLiteUIComponent]()
+    
+    /// Notifies subscriber of the status of obtaining or refreshing views
     var onUpdatedViews: ((Result<[UIView], AlchemistLiteError>) -> Void)?
     
     func load() {
@@ -21,6 +23,7 @@ class AlchemistLiteBroker {
         }
         
         handleUpdatedResults(updated: deserialized)
+        
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.onUpdatedViews?(.success(self.currentSessionComponents.map({$0.getView()})))
