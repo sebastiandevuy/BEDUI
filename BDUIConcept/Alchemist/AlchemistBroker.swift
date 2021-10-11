@@ -10,13 +10,13 @@ import UIKit
 
 class AlchemistLiteBroker {
     private var currentSessionComponents = [AlchemistLiteUIComponent]()
-    var onUpdatedViews: ((Result<[UIView], Error>) -> Void)?
+    var onUpdatedViews: ((Result<[UIView], AlchemistLiteError>) -> Void)?
     
     func load() {
         guard let bundlePath = Bundle.main.path(forResource: "SDUIInitialDraft", ofType: "json"),
               let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8),
               let deserialized = try? JSONDecoder().decode([BEComponent].self, from: jsonData) else {
-                  onUpdatedViews?(.failure(NSError(domain: "", code: -1, userInfo: nil)))
+                  onUpdatedViews?(.failure(.responseDeserialization))
                   return
         }
         
@@ -31,7 +31,7 @@ class AlchemistLiteBroker {
         guard let bundlePath = Bundle.main.path(forResource: "SDUISecondDraft", ofType: "json"),
               let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8),
               let deserialized = try? JSONDecoder().decode([BEComponent].self, from: jsonData) else {
-                  onUpdatedViews?(.failure(NSError(domain: "", code: -1, userInfo: nil)))
+                  onUpdatedViews?(.failure(.responseDeserialization))
                   return
         }
         
@@ -44,10 +44,13 @@ class AlchemistLiteBroker {
     
     private func handleUpdatedResults(updated: [BEComponent]) {
         //1 - First time? just add´em up from registration
-        if currentSessionComponents.count == 0 {
+        if currentSessionComponents.isEmpty {
             for component in updated {
                 guard let registration = AlchemistLiteManager.registeredComponents.first(where: {$0.type == component.type }),
-                      let uiComponent = registration.onInitialization(component) else { continue }
+                      let uiComponent = registration.onInitialization(component) else {
+                          // Log this somewhere
+                          continue
+                      }
                 currentSessionComponents.append(uiComponent)
             }
             print("No previous components. Added server ones as default")
@@ -83,7 +86,10 @@ class AlchemistLiteBroker {
                     newComponentArray.append(currentComponent)
                 } else {
                     guard let registration = AlchemistLiteManager.registeredComponents.first(where: {$0.type == component.type }),
-                          let uiComponent = registration.onInitialization(component) else { continue }
+                          let uiComponent = registration.onInitialization(component) else {
+                              // Log this somewhere
+                              continue
+                          }
                     newComponentArray.append(uiComponent)
                 }
             }
