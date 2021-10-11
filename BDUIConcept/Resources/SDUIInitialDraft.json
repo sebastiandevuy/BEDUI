@@ -1,7 +1,7 @@
 [
 	{
 		"id": "firstId",
-		"type": "fistType",
+		"type": "firstType",
 		"hash": "123456789",
 		"content": {
 			"name": "sebastian",
@@ -16,5 +16,14 @@
 			"isTrue": true,
 			"title": "hola mundo"
 		}
-	}
+	},
+    {
+        "id": "thirdId",
+        "type": "firstType",
+        "hash": "123456789",
+        "content": {
+            "name": "sebastian",
+            "age": 40
+        }
+    },
 ]

@@ -30,8 +30,9 @@ class AlchemistLiteManager {
 
 class AlchemistLiteBroker {
     private var currentSessionComponents = [AlchemistLiteUIComponent]()
+    var updates: ((Result<[UIView], Error>) -> Void)?
     
-    func loadViews(completion: @escaping (Result<[UIView], Error>) -> Void ) {
+    func listenViewUpdates(completion: @escaping (Result<[UIView], Error>) -> Void ) {
         // Get views from repo or whatever
         guard let bundlePath = Bundle.main.path(forResource: "SDUIInitialDraft", ofType: "json"),
               let jsonData = try? String(contentsOfFile: bundlePath).data(using: .utf8),
@@ -41,7 +42,12 @@ class AlchemistLiteBroker {
         }
         
         let parsedComponents = parseComponentsFromResponse(deserialized)
-        completion(.success(parsedComponents.map({$0.getView()})))
+        handleUpdatedResults(updated: parsedComponents)
+        completion(.success(currentSessionComponents.map({$0.getView()})))
+    }
+    
+    func load() {
+        
     }
     
     private func parseComponentsFromResponse(_ response: [BEComponent]) -> [AlchemistLiteUIComponent] {
@@ -52,6 +58,36 @@ class AlchemistLiteBroker {
             componentsResponse.append(uiComponent)
         }
         return componentsResponse
+    }
+    
+    private func handleUpdatedResults(updated: [AlchemistLiteUIComponent]) {
+        //Perform updates
+        
+        //1 - First time? just add´em up
+        if currentSessionComponents.count == 0 {
+            currentSessionComponents = updated
+            print("No previous components. Added server ones as default")
+        } else {
+            //2 - We need tp update and change locations
+            var newComponentArray = [AlchemistLiteUIComponent]()
+            
+            //First get the id of current views
+            let currentIds = currentSessionComponents.map({$0.id})
+            let newIds = updated.map({$0.id})
+            
+            var idsToRemove = [String]()
+            
+            newIds.forEach({ identity in
+                if !currentIds.contains(identity) {
+                    idsToRemove.append(identity)
+                }
+            })
+            
+            currentSessionComponents.removeAll(where: {idsToRemove.contains($0.id)})
+            
+            //Clean previous ones
+            
+        }
     }
 }
 
@@ -68,7 +104,7 @@ protocol AlchemistLiteUIComponent {
     func updateView(data: Data)
 }
 
-protocol AlchemistLiteViewable {
+protocol AlchemistLiteViewable where Self: UIView {
     associatedtype Content
     func update(withContent: Content)
 }
@@ -78,6 +114,8 @@ class Component1: AlchemistLiteUIComponent {
     var hash: String
     var type: String
     var data: ModelData
+    
+    private var currentView: UIView?
     
     init(id: String, hash: String, type: String, data: Data?) throws {
         self.id = id
@@ -89,7 +127,11 @@ class Component1: AlchemistLiteUIComponent {
     }
     
     func getView() -> UIView {
+        if let viewtoReturn = currentView {
+            return viewtoReturn
+        }
         let view = UIView()
+        currentView = view
         view.backgroundColor = .yellow
         NSLayoutConstraint.activate([view.heightAnchor.constraint(equalToConstant: 200)])
         return view
@@ -134,5 +176,36 @@ class Component2: AlchemistLiteUIComponent {
     struct ModelData: Decodable {
         let isTrue: Bool
         let title: String
+    }
+}
+
+class Component3: AlchemistLiteUIComponent {
+    var id: String
+    var hash: String
+    var type: String
+    var data: ModelData
+
+    init(id: String, hash: String, type: String, data: Data?) throws {
+        self.id = id
+        self.hash = hash
+        self.type = type
+        guard let content = data else { throw NSError(domain: "", code: 123, userInfo: nil)}
+        self.data = try JSONDecoder().decode(ModelData.self, from: content)
+        print(self.data)
+    }
+
+    func getView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .blue
+        NSLayoutConstraint.activate([view.heightAnchor.constraint(equalToConstant: 300)])
+        return view
+    }
+
+    func updateView(data: Data) {
+        fatalError()
+    }
+
+    struct ModelData: Decodable {
+        let year: Int
     }
 }

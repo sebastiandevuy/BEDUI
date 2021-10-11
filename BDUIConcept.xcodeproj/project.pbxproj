@@ -20,6 +20,7 @@
 		2F1CB07D271355F9008680A7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB07C271355F9008680A7 /* Decodable+Extensions.swift */; };
 		2F1CB08027135A05008680A7 /* SDUIInitialDraft.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */; };
 		2F1CB0822713924D008680A7 /* AlchemistLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */; };
+		2F1CB0842713BFB3008680A7 /* SDUISecondDraft.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F1CB0832713BFB3008680A7 /* SDUISecondDraft.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		2F1CB07C271355F9008680A7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SDUIInitialDraft.json; sourceTree = "<group>"; };
 		2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemistLiteManager.swift; sourceTree = "<group>"; };
+		2F1CB0832713BFB3008680A7 /* SDUISecondDraft.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SDUISecondDraft.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		2F1CB07E271358B4008680A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CB0832713BFB3008680A7 /* SDUISecondDraft.json */,
 				2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */,
 			);
 			path = Resources;
@@ -262,6 +265,7 @@
 				2F1CB05627135426008680A7 /* LaunchScreen.storyboard in Resources */,
 				2F1CB08027135A05008680A7 /* SDUIInitialDraft.json in Resources */,
 				2F1CB05327135426008680A7 /* Assets.xcassets in Resources */,
+				2F1CB0842713BFB3008680A7 /* SDUISecondDraft.json in Resources */,
 				2F1CB05127135423008680A7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         setupView()
         
         //1 - Register Components
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "fistType", onInitialization: { component in
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "firstType", onInitialization: { component in
             return try? Component1(id: component.id, hash: component.hash, type: component.type, data: component.content)
         }))
         
@@ -24,11 +24,15 @@ class ViewController: UIViewController {
             return try? Component2(id: component.id, hash: component.hash, type: component.type, data: component.content)
         }))
         
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "thirdType", onInitialization: { component in
+            return try? Component3(id: component.id, hash: component.hash, type: component.type, data: component.content)
+        }))
+        
         
         //2 - Obtain a broker - Probably with params in order to set the endpoint to be called. TBD
         broker = AlchemistLiteManager.shared.getViewBroker()
         
-        broker.loadViews { result in
+        broker.listenViewUpdates { result in
             switch result {
             case .success(let views):
                 DispatchQueue.main.async { [weak self] in
