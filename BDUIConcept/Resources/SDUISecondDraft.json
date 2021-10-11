@@ -1,12 +1,13 @@
 [
-	{
-		"id": "fourthId",
-		"type": "thirdType",
-		"hash": "123456789",
-		"content": {
-			"year": 1981
-		}
-	},
+    {
+        "id": "firstId",
+        "type": "firstType",
+        "hash": "123456789xx",
+        "content": {
+            "name": "Daphne",
+            "age": 7
+        }
+    },
     {
         "id": "secondId",
         "type": "secondType",

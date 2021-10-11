@@ -14,7 +14,7 @@ class Component1: AlchemistLiteUIComponent {
     var type: String
     var data: ModelData
     
-    private var currentView: UIView?
+    private var currentView: Component1View?
     
     init(id: String, hash: String, type: String, data: Data?) throws {
         self.id = id
@@ -29,15 +29,15 @@ class Component1: AlchemistLiteUIComponent {
         if let viewtoReturn = currentView {
             return viewtoReturn
         }
-        let view = UIView()
+        let view = Component1View(component: data)
         currentView = view
-        view.backgroundColor = .yellow
-        NSLayoutConstraint.activate([view.heightAnchor.constraint(equalToConstant: 200)])
         return view
     }
     
     func updateView(data: Data) {
-        fatalError()
+        guard let updatedData = try? JSONDecoder().decode(ModelData.self, from: data) else { return }
+        self.data = updatedData
+        currentView?.update(withContent: updatedData)
     }
     
     struct ModelData: Decodable {
