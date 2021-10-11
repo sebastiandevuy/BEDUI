@@ -7,14 +7,15 @@
 			"year": 1981
 		}
 	},
-	{
-		"id": "fifthId",
-		"type": "thirdType",
-		"hash": "987654321",
-		"content": {
-			"year": 1981
-		}
-	},
+    {
+        "id": "secondId",
+        "type": "secondType",
+        "hash": "987654321xxx",
+        "content": {
+            "isTrue": true,
+            "title": "hola mundo"
+        }
+    },
     {
         "id": "sicthId",
         "type": "thirdType",

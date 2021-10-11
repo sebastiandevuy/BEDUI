@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         //2 - Obtain a broker - Probably with params in order to set the endpoint to be called. TBD
         broker = AlchemistLiteManager.shared.getViewBroker()
         
-        broker.listenViewUpdates { result in
+        broker.onUpdatedViews = { result in
             switch result {
             case .success(let views):
                 DispatchQueue.main.async { [weak self] in
@@ -42,6 +42,12 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
+        }
+        
+        broker.load()
+        
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 10) { [weak self] in
+            self?.broker.load2()
         }
     }
     

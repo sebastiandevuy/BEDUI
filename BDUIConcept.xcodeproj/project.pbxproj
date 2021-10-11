@@ -21,6 +21,12 @@
 		2F1CB08027135A05008680A7 /* SDUIInitialDraft.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */; };
 		2F1CB0822713924D008680A7 /* AlchemistLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */; };
 		2F1CB0842713BFB3008680A7 /* SDUISecondDraft.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F1CB0832713BFB3008680A7 /* SDUISecondDraft.json */; };
+		2F1CB0862713CDF9008680A7 /* AlchemistBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0852713CDF9008680A7 /* AlchemistBroker.swift */; };
+		2F1CB0882713CE23008680A7 /* AlchemistLiteRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0872713CE23008680A7 /* AlchemistLiteRegistration.swift */; };
+		2F1CB08A2713CE4C008680A7 /* AlchemistLiteUIComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0892713CE4C008680A7 /* AlchemistLiteUIComponent.swift */; };
+		2F1CB08D2713CE8B008680A7 /* Component1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB08C2713CE8B008680A7 /* Component1.swift */; };
+		2F1CB08F2713CEAC008680A7 /* Component2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB08E2713CEAC008680A7 /* Component2.swift */; };
+		2F1CB0912713CECA008680A7 /* Component3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0902713CECA008680A7 /* Component3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,12 @@
 		2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SDUIInitialDraft.json; sourceTree = "<group>"; };
 		2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemistLiteManager.swift; sourceTree = "<group>"; };
 		2F1CB0832713BFB3008680A7 /* SDUISecondDraft.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SDUISecondDraft.json; sourceTree = "<group>"; };
+		2F1CB0852713CDF9008680A7 /* AlchemistBroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemistBroker.swift; sourceTree = "<group>"; };
+		2F1CB0872713CE23008680A7 /* AlchemistLiteRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemistLiteRegistration.swift; sourceTree = "<group>"; };
+		2F1CB0892713CE4C008680A7 /* AlchemistLiteUIComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlchemistLiteUIComponent.swift; sourceTree = "<group>"; };
+		2F1CB08C2713CE8B008680A7 /* Component1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component1.swift; sourceTree = "<group>"; };
+		2F1CB08E2713CEAC008680A7 /* Component2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component2.swift; sourceTree = "<group>"; };
+		2F1CB0902713CECA008680A7 /* Component3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +154,13 @@
 		2F1CB0792713543B008680A7 /* Alchemist */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CB08B2713CE7C008680A7 /* Components */,
 				2F1CB07A27135452008680A7 /* BEComponent.swift */,
 				2F1CB07C271355F9008680A7 /* Decodable+Extensions.swift */,
 				2F1CB0812713924D008680A7 /* AlchemistLiteManager.swift */,
+				2F1CB0852713CDF9008680A7 /* AlchemistBroker.swift */,
+				2F1CB0872713CE23008680A7 /* AlchemistLiteRegistration.swift */,
+				2F1CB0892713CE4C008680A7 /* AlchemistLiteUIComponent.swift */,
 			);
 			path = Alchemist;
 			sourceTree = "<group>";
@@ -156,6 +172,16 @@
 				2F1CB07F27135A05008680A7 /* SDUIInitialDraft.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2F1CB08B2713CE7C008680A7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2F1CB08C2713CE8B008680A7 /* Component1.swift */,
+				2F1CB08E2713CEAC008680A7 /* Component2.swift */,
+				2F1CB0902713CECA008680A7 /* Component3.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,10 +318,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F1CB04E27135423008680A7 /* ViewController.swift in Sources */,
+				2F1CB08F2713CEAC008680A7 /* Component2.swift in Sources */,
 				2F1CB04A27135423008680A7 /* AppDelegate.swift in Sources */,
 				2F1CB0822713924D008680A7 /* AlchemistLiteManager.swift in Sources */,
+				2F1CB08D2713CE8B008680A7 /* Component1.swift in Sources */,
+				2F1CB0912713CECA008680A7 /* Component3.swift in Sources */,
 				2F1CB07B27135452008680A7 /* BEComponent.swift in Sources */,
 				2F1CB04C27135423008680A7 /* SceneDelegate.swift in Sources */,
+				2F1CB0882713CE23008680A7 /* AlchemistLiteRegistration.swift in Sources */,
+				2F1CB0862713CDF9008680A7 /* AlchemistBroker.swift in Sources */,
+				2F1CB08A2713CE4C008680A7 /* AlchemistLiteUIComponent.swift in Sources */,
 				2F1CB07D271355F9008680A7 /* Decodable+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
