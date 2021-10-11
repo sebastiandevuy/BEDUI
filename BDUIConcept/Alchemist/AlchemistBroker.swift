@@ -101,3 +101,16 @@ class AlchemistLiteBroker {
         }
     }
 }
+
+extension AlchemistLiteBroker {
+    enum LoadType {
+        // To get response from local json file. Use file name without extension.
+        case fromLocalFile(name: String, bundle: Bundle)
+        
+        // URL to make remote request for components
+        case fomUrl(url: URL)
+        
+        // If using a mixed response, just provide those BE components for evaluation.
+        case fromProvidedComponents(components: BEComponent)
+    }
+}
