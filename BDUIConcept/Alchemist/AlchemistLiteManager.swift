@@ -18,7 +18,7 @@ class AlchemistLiteManager {
     /// - Parameter registration: Information needed to create this components
     static func registerComponent(_ registration: AlchemistLiteRegistration) {
         guard registeredComponents.first(where: {$0.type == registration.type}) == nil else {
-            return
+            fatalError("component for the type registered already exists")
         }
         registeredComponents.append(registration)
     }

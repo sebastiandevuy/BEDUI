@@ -1,5 +1,5 @@
 //
-//  ImageCarrouselComponent.swift
+//  MultiLineTextComponent.swift
 //  BDUIConcept
 //
 //  Created by Pablo Gonzalez on 12/10/21.
@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 
-class ImageCarrouselComponent: AlchemistLiteUIComponent {
-    private(set) static var componentType = "imageCarrousel"
+class MultiLineTextComponent: AlchemistLiteUIComponent {
+    private(set) static var componentType = "multilineText"
     
     var id: String
     var hash: String
     var type: String
     
     private(set) var content: Content
-    private var currentView: ImageCarrouselView?
+    private var currentView: MultiLineTextComponentView?
     
     required init(component: BEComponent) throws {
         self.id = component.id
@@ -34,7 +34,7 @@ class ImageCarrouselComponent: AlchemistLiteUIComponent {
         if let viewtoReturn = currentView {
             return viewtoReturn
         }
-        let view = ImageCarrouselView(content: content)
+        let view = MultiLineTextComponentView(viewModel: content)
         currentView = view
         return view
     }
@@ -46,14 +46,8 @@ class ImageCarrouselComponent: AlchemistLiteUIComponent {
     }
 }
 
-extension ImageCarrouselComponent {
+extension MultiLineTextComponent {
     struct Content: Decodable {
-        let title: String
-        let images: [Image]
-        
-        struct Image: Decodable {
-            let id: String
-            let url: String
-        }
+        let body: String
     }
 }

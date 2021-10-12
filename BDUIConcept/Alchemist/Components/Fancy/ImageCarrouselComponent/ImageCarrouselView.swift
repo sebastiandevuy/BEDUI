@@ -18,6 +18,8 @@ class ImageCarrouselView: UIView, AlchemistLiteViewUpdatable {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
+    private let titleLabel = UILabel()
+    
     init(content: ImageCarrouselComponent.Content) {
         self.content = content
         super.init(frame: .zero)
@@ -30,15 +32,23 @@ class ImageCarrouselView: UIView, AlchemistLiteViewUpdatable {
     
     func update(withContent content: ImageCarrouselComponent.Content) {
         self.content = content
+        titleLabel.text = content.title
         collectionView.reloadData()
     }
     
     private func setupView() {
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = content.title
+        addSubview(titleLabel)
+        NSLayoutConstraint.activate([titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+                                     titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+                                     titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)])
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
-        backgroundColor = .yellow
         
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
                                      collectionView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
                                      collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
                                      collectionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),

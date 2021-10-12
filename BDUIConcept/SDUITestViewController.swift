@@ -24,6 +24,10 @@ class SDUITestViewController: UIViewController {
             return try? ImageCarrouselComponent(component: component)
         }))
         
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: MultiLineTextComponent.componentType, onInitialization: { component in
+            return try? MultiLineTextComponent(component: component)
+        }))
+        
         
         //2 - Obtain a broker - Probably with params in order to set the endpoint to be called. TBD
         broker = AlchemistLiteManager.shared.getViewBroker()
@@ -55,6 +59,7 @@ class SDUITestViewController: UIViewController {
         view.backgroundColor = .white
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = 4
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

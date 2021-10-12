@@ -32,6 +32,8 @@
 		2F1CB0A327155453008680A7 /* ImageCarrouselComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0A227155453008680A7 /* ImageCarrouselComponent.swift */; };
 		2F1CB0A527155474008680A7 /* ImageCarrouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0A427155474008680A7 /* ImageCarrouselView.swift */; };
 		2F1CB0A82715606A008680A7 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2F1CB0A72715606A008680A7 /* SDWebImage */; };
+		2F1CB0AB2715BF1A008680A7 /* MultiLineTextComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0AA2715BF19008680A7 /* MultiLineTextComponent.swift */; };
+		2F1CB0AD2715BF27008680A7 /* MultiLineTextComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CB0AC2715BF27008680A7 /* MultiLineTextComponentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		2F1CB09F27154DB0008680A7 /* TitleComponentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponentViewModel.swift; sourceTree = "<group>"; };
 		2F1CB0A227155453008680A7 /* ImageCarrouselComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarrouselComponent.swift; sourceTree = "<group>"; };
 		2F1CB0A427155474008680A7 /* ImageCarrouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarrouselView.swift; sourceTree = "<group>"; };
+		2F1CB0AA2715BF19008680A7 /* MultiLineTextComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextComponent.swift; sourceTree = "<group>"; };
+		2F1CB0AC2715BF27008680A7 /* MultiLineTextComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextComponentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 		2F1CB099271546A3008680A7 /* Fancy */ = {
 			isa = PBXGroup;
 			children = (
+				2F1CB0A92715BEFC008680A7 /* MultiLineTextComponent */,
 				2F1CB0A127155408008680A7 /* ImageCarrouselComponent */,
 				2F1CB09A271546B7008680A7 /* TitleComponent */,
 			);
@@ -220,6 +225,15 @@
 				2F1CB0A427155474008680A7 /* ImageCarrouselView.swift */,
 			);
 			path = ImageCarrouselComponent;
+			sourceTree = "<group>";
+		};
+		2F1CB0A92715BEFC008680A7 /* MultiLineTextComponent */ = {
+			isa = PBXGroup;
+			children = (
+				2F1CB0AA2715BF19008680A7 /* MultiLineTextComponent.swift */,
+				2F1CB0AC2715BF27008680A7 /* MultiLineTextComponentView.swift */,
+			);
+			path = MultiLineTextComponent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F1CB0AD2715BF27008680A7 /* MultiLineTextComponentView.swift in Sources */,
 				2F1CB04E27135423008680A7 /* ViewController.swift in Sources */,
 				2F1CB0A527155474008680A7 /* ImageCarrouselView.swift in Sources */,
 				2F1CB0982714DF4D008680A7 /* AlchemistError.swift in Sources */,
@@ -368,6 +383,7 @@
 				2F1CB09C271546CF008680A7 /* TitleComponent.swift in Sources */,
 				2F1CB0822713924D008680A7 /* AlchemistLiteManager.swift in Sources */,
 				2F1CB09E27154D9A008680A7 /* TitleComponentView.swift in Sources */,
+				2F1CB0AB2715BF1A008680A7 /* MultiLineTextComponent.swift in Sources */,
 				2F1CB07B27135452008680A7 /* BEComponent.swift in Sources */,
 				2F1CB04C27135423008680A7 /* SceneDelegate.swift in Sources */,
 				2F1CB0882713CE23008680A7 /* AlchemistLiteRegistration.swift in Sources */,
