@@ -28,7 +28,7 @@ class AlchemistLiteManager {
     }
 }
 
-protocol AlchemistLiteViewable where Self: UIView {
+protocol AlchemistLiteViewUpdatable where Self: UIView {
     associatedtype Content
     func update(withContent: Content)
 }

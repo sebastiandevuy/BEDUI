@@ -9,4 +9,6 @@ import Foundation
 
 enum AlchemistLiteError: Error {
     case responseDeserialization
+    case componentDataMissing(component: String)
+    case componentDataParsing(component: String)
 }

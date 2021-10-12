@@ -16,16 +16,12 @@ class SDUITestViewController: UIViewController {
         setupView()
         
         //1 - Register Components
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "firstType", onInitialization: { component in
-            return try? Component1(id: component.id, hash: component.hash, type: component.type, data: component.content)
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: TitleComponent.componentType, onInitialization: { component in
+            return try? TitleComponent(component: component)
         }))
         
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "secondType", onInitialization: { component in
-            return try? Component2(id: component.id, hash: component.hash, type: component.type, data: component.content)
-        }))
-        
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: "thirdType", onInitialization: { component in
-            return try? Component3(id: component.id, hash: component.hash, type: component.type, data: component.content)
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: ImageCarrouselComponent.componentType, onInitialization: { component in
+            return try? ImageCarrouselComponent(component: component)
         }))
         
         
