@@ -27,6 +27,14 @@ class SDUITestViewController: UIViewController {
         AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: MultiLineTextComponent.componentType, onInitialization: { config in
             return try? MultiLineTextComponent(config: config)
         }))
+
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: AmountComponent.componentType, onInitialization: { config in
+            return try? AmountComponent(config: config)
+        }))
+
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: TipsComponent.componentType, onInitialization: { config in
+            return try? TipsComponent(config: config)
+        }))
         
         
         //2 - Obtain a broker - Probably with params in order to set the endpoint to be called. TBD
@@ -43,9 +51,9 @@ class SDUITestViewController: UIViewController {
         
         broker.load()
         
-        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 10) { [weak self] in
-            self?.broker.load2()
-        }
+//        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 10) { [weak self] in
+//            self?.broker.load2()
+//        }
     }
     
     func handleViewAnimation(forViews views: [UIView]) {
@@ -71,9 +79,9 @@ class SDUITestViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20) { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20) { [weak self] in
+//            self?.dismiss(animated: true, completion: nil)
+//        }
     }
     
     deinit {
