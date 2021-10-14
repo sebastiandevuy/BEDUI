@@ -13,7 +13,6 @@ protocol AlchemistLiteUIComponent {
     static var componentType: String { get }
     
     var id: String { get }
-    var hash: String { get }
     var type: String { get }
     
     func getView() -> UIView

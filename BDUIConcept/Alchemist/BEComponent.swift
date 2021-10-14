@@ -16,9 +16,6 @@ struct BEComponent: Decodable {
     /// Identifies the component to be instantiated in the cliend
     let type: String
     
-    /// Determines the current state of the entity by hashing its content
-    let hash: String
-    
     /// Payload with relevant view data. To be decoded when needed to the appropriate entity.
     let content: Data?
     
@@ -30,7 +27,6 @@ struct BEComponent: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.type = try container.decode(String.self, forKey: .type)
-        self.hash = try container.decode(String.self, forKey: .hash)
         guard let contentDictionary = try container.decodeIfPresent([String: Any].self, forKey: .content) else {
             self.content = nil
             return

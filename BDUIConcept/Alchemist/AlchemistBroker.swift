@@ -78,13 +78,8 @@ class AlchemistLiteBroker {
             //2 - update current set while keeping old views
             for component in updated {
                 if let currentComponent = currentSessionComponents.first(where: {$0.id == component.id}), let data = component.content {
-                    if currentComponent.hash != component.hash {
-                        print("Updating existing component with different hash")
-                        DispatchQueue.main.async {
-                            currentComponent.updateView(data: data)
-                        }
-                    } else {
-                        print("Found component but with same hash. No updates done")
+                    DispatchQueue.main.async {
+                        currentComponent.updateView(data: data)
                     }
                     newComponentArray.append(currentComponent)
                 } else {

@@ -12,7 +12,6 @@ class ImageCarrouselComponent: AlchemistLiteUIComponent {
     private(set) static var componentType = "imageCarrousel"
     
     var id: String
-    var hash: String
     var type: String
     
     private(set) var content: Content
@@ -20,7 +19,6 @@ class ImageCarrouselComponent: AlchemistLiteUIComponent {
     
     required init(component: BEComponent) throws {
         self.id = component.id
-        self.hash = component.hash
         self.type = component.type
         guard let componentData = component.content else { throw AlchemistLiteError.componentDataMissing(component: TitleComponent.componentType)}
         do {
@@ -40,18 +38,22 @@ class ImageCarrouselComponent: AlchemistLiteUIComponent {
     }
     
     func updateView(data: Data) {
-        guard let updatedContent = try? JSONDecoder().decode(Content.self, from: data) else { return }
+        guard let updatedContent = try? JSONDecoder().decode(Content.self, from: data),
+        updatedContent != self.content else {
+            print("No changes for \(ImageCarrouselComponent.componentType)")
+            return
+        }
         self.content = updatedContent
         currentView?.update(withContent: updatedContent)
     }
 }
 
 extension ImageCarrouselComponent {
-    struct Content: Decodable {
+    struct Content: Decodable, Equatable {
         let title: String
         let images: [Image]
         
-        struct Image: Decodable {
+        struct Image: Decodable, Equatable {
             let id: String
             let url: String
         }
