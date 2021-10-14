@@ -10,6 +10,7 @@ import UIKit
 
 class AlchemistLiteBroker {
     private var currentSessionComponents = [AlchemistLiteUIComponent]()
+    private let notificationName: String = "AlchemistLiteEvent_\(UUID().uuidString)"
     
     /// Notifies subscriber of the status of obtaining or refreshing views
     var onUpdatedViews: ((Result<[UIView], AlchemistLiteError>) -> Void)?
@@ -50,7 +51,7 @@ class AlchemistLiteBroker {
         if currentSessionComponents.isEmpty {
             for component in updated {
                 guard let registration = AlchemistLiteManager.registeredComponents.first(where: {$0.type == component.type }),
-                      let uiComponent = registration.onInitialization(component) else {
+                      let uiComponent = registration.onInitialization(AlchemistLiteUIComponentConfiguration(component: component, notificationHandler: AlchemistLiteNotificationHandler(name: notificationName))) else {
                           // Log this somewhere
                           continue
                       }
@@ -84,7 +85,8 @@ class AlchemistLiteBroker {
                     newComponentArray.append(currentComponent)
                 } else {
                     guard let registration = AlchemistLiteManager.registeredComponents.first(where: {$0.type == component.type }),
-                          let uiComponent = registration.onInitialization(component) else {
+                          let uiComponent = registration.onInitialization(AlchemistLiteUIComponentConfiguration(component: component,
+                                                                                                                notificationHandler: AlchemistLiteNotificationHandler(name: notificationName))) else {
                               // Log this somewhere
                               continue
                           }
@@ -107,5 +109,50 @@ extension AlchemistLiteBroker {
         
         // If using a mixed response, just provide those BE components for evaluation.
         case fromProvidedComponents(components: BEComponent)
+    }
+}
+
+struct AlchemistLiteNotification {
+    let id: String
+    let data: Data
+}
+
+struct AlchemistLiteUIComponentConfiguration {
+    let component: BEComponent
+    let notificationHandler: AlchemistLiteNotificationHandler
+}
+
+class AlchemistLiteNotificationHandler {
+    private let notificationCenter: NotificationCenter
+    private let name: String
+    var onNotificationReceived: ((AlchemistLiteNotification) -> Void)?
+    
+    init(name: String,
+         notificationCenter: NotificationCenter = .default) {
+        self.notificationCenter = notificationCenter
+        self.name = name
+        setupObserver()
+    }
+    
+    private func setupObserver() {
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveNotification),
+                                       name: NSNotification.Name(name),
+                                       object: nil
+        )
+    }
+    
+    @objc
+    private func didReceiveNotification(_ notification: Notification) {
+        guard let item = notification.object as? AlchemistLiteNotification else {
+            let object = notification.object as Any
+            assertionFailure("Invalid object: \(object)")
+            return
+        }
+        onNotificationReceived?(item)
+    }
+    
+    func broadcastNotification(notification: AlchemistLiteNotification) {
+        notificationCenter.post(name: NSNotification.Name(name), object: notification)
     }
 }

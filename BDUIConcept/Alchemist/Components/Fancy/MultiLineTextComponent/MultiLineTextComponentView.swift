@@ -10,12 +10,16 @@ import UIKit
 
 class MultiLineTextComponentView: UIView, AlchemistLiteViewUpdatable {
     private let titleLabel = UILabel()
+    private let handler: AlchemistLiteNotificationHandler
     
     
-    init(viewModel: MultiLineTextComponent.Content) {
+    init(viewModel: MultiLineTextComponent.Content,
+         handler: AlchemistLiteNotificationHandler) {
+        self.handler = handler
         super.init(frame: .zero)
         titleLabel.text = viewModel.body
         setupView()
+        setupNotifications()
     }
     
     required init?(coder: NSCoder) {
@@ -32,6 +36,12 @@ class MultiLineTextComponentView: UIView, AlchemistLiteViewUpdatable {
                                      titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
                                      titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16)])
         
+    }
+    
+    private func setupNotifications() {
+        handler.onNotificationReceived = { notification in
+            print("got notification \(notification)")
+        }
     }
     
     func update(withContent content: MultiLineTextComponent.Content) {

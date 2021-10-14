@@ -9,5 +9,5 @@ import Foundation
 
 struct AlchemistLiteRegistration {
     let type: String
-    let onInitialization: ((BEComponent) -> AlchemistLiteUIComponent?)
+    let onInitialization: ((AlchemistLiteUIComponentConfiguration) -> AlchemistLiteUIComponent?)
 }

@@ -13,26 +13,29 @@ class TitleComponent: AlchemistLiteUIComponent {
     
     var id: String
     var type: String
+    var notificationHandler: AlchemistLiteNotificationHandler
     
     private(set) var content: Content
     private var currentView: TitleComponentView?
     
-    required init(component: BEComponent) throws {
-        self.id = component.id
-        self.type = component.type
-        guard let componentData = component.content else { throw AlchemistLiteError.componentDataMissing(component: TitleComponent.componentType)}
+    required init(config: AlchemistLiteUIComponentConfiguration) throws {
+        self.id = config.component.id
+        self.type = config.component.type
+        guard let componentData = config.component.content else { throw AlchemistLiteError.componentDataMissing(component: TitleComponent.componentType)}
         do {
             self.content = try JSONDecoder().decode(Content.self, from: componentData)
         } catch {
             throw AlchemistLiteError.componentDataParsing(component: TitleComponent.componentType)
         }
+        self.notificationHandler = config.notificationHandler
     }
     
     func getView() -> UIView {
         if let viewtoReturn = currentView {
             return viewtoReturn
         }
-        let view = TitleComponentView(viewModel: TitleComponentViewModel(content: content))
+        let view = TitleComponentView(viewModel: TitleComponentViewModel(content: content,
+                                                                         handler: notificationHandler))
         currentView = view
         return view
     }

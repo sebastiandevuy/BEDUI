@@ -9,15 +9,22 @@ import Foundation
 
 class TitleComponentViewModel {
     private(set) var title: String
+    private(set) var notificationHandler: AlchemistLiteNotificationHandler
     
     var onTitleUpdated: (() -> Void)?
     
-    init(content: TitleComponent.Content) {
+    init(content: TitleComponent.Content,
+         handler: AlchemistLiteNotificationHandler) {
         self.title = content.title
+        self.notificationHandler = handler
     }
     
     func update(_ content: TitleComponent.Content) {
         title = content.title
         onTitleUpdated?()
+    }
+    
+    func sendNotification() {
+        notificationHandler.broadcastNotification(notification: AlchemistLiteNotification(id: "123", data: "Hola".data(using: .utf8)!))
     }
 }

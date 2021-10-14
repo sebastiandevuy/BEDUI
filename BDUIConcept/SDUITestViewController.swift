@@ -16,16 +16,16 @@ class SDUITestViewController: UIViewController {
         setupView()
         
         //1 - Register Components
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: TitleComponent.componentType, onInitialization: { component in
-            return try? TitleComponent(component: component)
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: TitleComponent.componentType, onInitialization: { config in
+            return try? TitleComponent(config: config)
         }))
         
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: ImageCarrouselComponent.componentType, onInitialization: { component in
-            return try? ImageCarrouselComponent(component: component)
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: ImageCarrouselComponent.componentType, onInitialization: { config in
+            return try? ImageCarrouselComponent(config: config)
         }))
         
-        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: MultiLineTextComponent.componentType, onInitialization: { component in
-            return try? MultiLineTextComponent(component: component)
+        AlchemistLiteManager.registerComponent(AlchemistLiteRegistration(type: MultiLineTextComponent.componentType, onInitialization: { config in
+            return try? MultiLineTextComponent(config: config)
         }))
         
         

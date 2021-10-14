@@ -40,7 +40,15 @@ class TitleComponentView: UIView, AlchemistLiteViewUpdatable {
                                      titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
                                      titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
                                      titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16)])
-        
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.addTarget(self, action: #selector(sentNotification))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func sentNotification() {
+        viewModel.sendNotification()
     }
     
     func update(withContent content: TitleComponent.Content) {
