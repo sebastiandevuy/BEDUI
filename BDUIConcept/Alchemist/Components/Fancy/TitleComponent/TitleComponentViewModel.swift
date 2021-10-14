@@ -25,6 +25,6 @@ class TitleComponentViewModel {
     }
     
     func sendNotification() {
-        notificationHandler.broadcastNotification(notification: AlchemistLiteNotification(id: "123", data: "Hola".data(using: .utf8)!))
+        //notificationHandler.broadcastNotification(notification: AlchemistLiteNotification(id: "123", data: ["d": 1]))
     }
 }

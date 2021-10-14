@@ -14,6 +14,7 @@ class AmountComponentViewModel: ViewModellable {
     init(build: Build) {
         modelState = ModelState(notificationHandler: build.notificationHandler,
                                 content: build.content)
+        listenEventBusEvents()
     }
 
     func dispatchInputAction(_ action: InputAction) {
@@ -22,6 +23,21 @@ class AmountComponentViewModel: ViewModellable {
             handleDidSetupView()
         case .didUpdate(let content):
             handleDidUpdateContent(content)
+        }
+    }
+
+    private func listenEventBusEvents() {
+        modelState.notificationHandler.onNotificationReceived = { [weak self] notification in
+            self?.handleNotificationIfNeeded(notification)
+        }
+    }
+
+    private func handleNotificationIfNeeded(_ notification: AlchemistLiteNotification) {
+        switch notification.id {
+        case "amountUpdated":
+            print("Received amount updated in Detail component with payload \(notification.data)")
+        default:
+            print("Nada!")
         }
     }
 

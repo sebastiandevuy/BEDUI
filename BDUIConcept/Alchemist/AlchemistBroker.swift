@@ -112,9 +112,10 @@ extension AlchemistLiteBroker {
     }
 }
 
+// Eventos entre componentes para modificar comportaiento/ Listener - Observer
 struct AlchemistLiteNotification {
     let id: String
-    let data: Data
+    let data: [String: Any]
 }
 
 struct AlchemistLiteUIComponentConfiguration {
