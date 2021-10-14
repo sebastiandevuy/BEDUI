@@ -16,6 +16,7 @@ class AmountComponent: AlchemistLiteUIComponent {
     var notificationHandler: AlchemistLiteNotificationHandler
 
     private(set) var content: Content
+    private(set) var configuration: AlchemistLiteEventConfiguration?
     private var currentView: AmountComponentView?
 
     required init(config: AlchemistLiteUIComponentConfiguration) throws {
@@ -28,13 +29,14 @@ class AmountComponent: AlchemistLiteUIComponent {
             throw AlchemistLiteError.componentDataParsing(component: TitleComponent.componentType)
         }
         self.notificationHandler = config.notificationHandler
+        self.configuration = config.component.eventConfiguration
     }
 
     func getView() -> UIView {
         if let viewtoReturn = currentView {
             return viewtoReturn
         }
-        let view = AmountComponentView(viewModel: AmountComponentViewModel(build: AmountComponentViewModel.Build(content: content, notificationHandler: notificationHandler)))
+        let view = AmountComponentView(viewModel: AmountComponentViewModel(build: AmountComponentViewModel.Build(content: content, notificationHandler: notificationHandler, configuration: configuration)))
         currentView = view
         return view
     }

@@ -13,7 +13,8 @@ class AmountComponentViewModel: ViewModellable {
 
     init(build: Build) {
         modelState = ModelState(notificationHandler: build.notificationHandler,
-                                content: build.content)
+                                content: build.content,
+                                configuration: build.configuration)
         listenEventBusEvents()
     }
 
@@ -35,7 +36,8 @@ class AmountComponentViewModel: ViewModellable {
     private func handleNotificationIfNeeded(_ notification: AlchemistLiteNotification) {
         switch notification.id {
         case "amountUpdated":
-            print("Received amount updated in Detail component with payload \(notification.data)")
+            //print("Received amount updated in Detail component with payload \(notification.data)")
+            print("To exclude \(modelState.configuration?.origins)")
         default:
             print("Nada!")
         }
@@ -64,12 +66,15 @@ extension AmountComponentViewModel {
     class ModelState {
         let notificationHandler: AlchemistLiteNotificationHandler
         var content: AmountComponent.Content
+        var configuration:AlchemistLiteEventConfiguration?
         var currentValue: Double = 0
 
         init(notificationHandler: AlchemistLiteNotificationHandler,
-             content: AmountComponent.Content) {
+             content: AmountComponent.Content,
+             configuration: AlchemistLiteEventConfiguration?) {
             self.notificationHandler = notificationHandler
             self.content = content
+            self.configuration = configuration
         }
     }
 
@@ -83,5 +88,6 @@ extension AmountComponentViewModel {
     struct Build {
         let content: AmountComponent.Content
         let notificationHandler: AlchemistLiteNotificationHandler
+        let configuration: AlchemistLiteEventConfiguration?
     }
 }

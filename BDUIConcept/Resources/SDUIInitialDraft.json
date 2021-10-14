@@ -46,7 +46,9 @@
          "cardImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Former_Visa_%28company%29_logo.svg/3072px-Former_Visa_%28company%29_logo.svg.png",
          "cardType": "Visa"
       },
-      "originListener": ["tipSelection"]
+      "eventConfiguration": {
+          "origins": ["tipSelection"]
+      }
    },
    {
       "id": "tipSelection",
@@ -74,42 +76,44 @@
             }
          ]
       },
-      "events": [{
-            "eventType": "amountUpdated",
-            "targetId": 1,
-            "eventBody": {
-               "amount": 10,
-               "origin": "tipSelection"
-            }
-         },
-         {
-            "eventType": "amountUpdated",
-            "targetId": 2,
-            "eventBody": {
-               "amount": 20,
-               "origin": "tipSelection"
+      "eventConfiguration": {
+          "events": [{
+                "eventType": "amountUpdated",
+                "targetId": 1,
+                "eventBody": {
+                   "amount": 10,
+                   "origin": "tipSelection"
+                }
+             },
+             {
+                "eventType": "amountUpdated",
+                "targetId": 2,
+                "eventBody": {
+                   "amount": 20,
+                   "origin": "tipSelection"
 
-            }
-         },
-         {
-            "eventType": "amountUpdated",
-            "targetId": 3,
-            "eventBody": {
-               "amount": 30,
-               "origin": "tipSelection"
+                }
+             },
+             {
+                "eventType": "amountUpdated",
+                "targetId": 3,
+                "eventBody": {
+                   "amount": 30,
+                   "origin": "tipSelection"
 
-            }
-         },
-         {
-            "eventType": "amountUpdated",
-            "targetId": 4,
-            "eventBody": {
-               "amount": 40,
-               "origin": "tipSelection"
+                }
+             },
+             {
+                "eventType": "amountUpdated",
+                "targetId": 4,
+                "eventBody": {
+                   "amount": 40,
+                   "origin": "tipSelection"
 
-            }
-         }
-      ]
+                }
+             }
+          ]
+      }
    },
    {
       "id": "DonationSelection",
@@ -137,41 +141,43 @@
             }
          ]
       },
-      "events": [{
-            "eventType": "amountUpdated",
-            "targetId": 1,
-            "eventBody": {
-               "amount": 50,
-               "origin": "DonationSelection"
-            }
-         },
-         {
-            "eventType": "amountUpdated",
-            "targetId": 2,
-            "eventBody": {
-               "amount": 60,
-               "origin": "DonationSelection"
+      "eventConfiguration": {
+          "events": [{
+                "eventType": "amountUpdated",
+                "targetId": 1,
+                "eventBody": {
+                   "amount": 50,
+                   "origin": "DonationSelection"
+                }
+             },
+             {
+                "eventType": "amountUpdated",
+                "targetId": 2,
+                "eventBody": {
+                   "amount": 60,
+                   "origin": "DonationSelection"
 
-            }
-         },
-         {
-            "eventType": "amountUpdated",
-            "targetId": 3,
-            "eventBody": {
-               "amount": 70,
-               "origin": "DonationSelection"
+                }
+             },
+             {
+                "eventType": "amountUpdated",
+                "targetId": 3,
+                "eventBody": {
+                   "amount": 70,
+                   "origin": "DonationSelection"
 
-            }
-         },
-         {
-            "eventType": "amountUpdated",
-            "targetId": 4,
-            "eventBody": {
-               "amount": 80,
-               "origin": "DonationSelection"
+                }
+             },
+             {
+                "eventType": "amountUpdated",
+                "targetId": 4,
+                "eventBody": {
+                   "amount": 80,
+                   "origin": "DonationSelection"
 
-            }
-         }
-      ]
+                }
+             }
+          ]
+      }
    }
 ]

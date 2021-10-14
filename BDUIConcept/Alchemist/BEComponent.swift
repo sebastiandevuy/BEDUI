@@ -20,17 +20,17 @@ struct BEComponent: Decodable {
     let content: Data?
 
     // Events to bind
-    let events: [AlchemistLiteEvent]?
+    let eventConfiguration: AlchemistLiteEventConfiguration?
     
     private enum CodingKeys : String, CodingKey {
-        case id, type, hash, content, events
+        case id, type, hash, content, eventConfiguration
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.type = try container.decode(String.self, forKey: .type)
-        self.events = try container.decodeIfPresent([AlchemistLiteEvent].self, forKey: .events)
+        self.eventConfiguration = try container.decodeIfPresent(AlchemistLiteEventConfiguration.self, forKey: .eventConfiguration)
         guard let contentDictionary = try container.decodeIfPresent([String: Any].self, forKey: .content) else {
             self.content = nil
             return
@@ -38,6 +38,11 @@ struct BEComponent: Decodable {
         let data = try JSONSerialization.data(withJSONObject: contentDictionary, options: .prettyPrinted)
         content = data
     }
+}
+
+struct AlchemistLiteEventConfiguration: Decodable {
+    let events: [AlchemistLiteEvent]?
+    let origins: [String]?
 }
 
 struct AlchemistLiteEvent: Decodable {

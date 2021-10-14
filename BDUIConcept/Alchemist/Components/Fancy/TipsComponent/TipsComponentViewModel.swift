@@ -14,7 +14,7 @@ class TipsComponentViewModel: ViewModellable {
     init(build: Build) {
         modelState = ModelState(notificationHandler: build.notificationHandler,
                                 content: build.content,
-                                events: build.events)
+                                configuration: build.configuration)
     }
 
     func dispatchInputAction(_ action: InputAction) {
@@ -31,7 +31,7 @@ class TipsComponentViewModel: ViewModellable {
     private func handleDidTapAmount(_ index: Int) {
         let selectedItem = modelState.content.tips[index]
         // Poder chequear los eventos y ver si para ese id hay algo y ejecutarlo
-        guard let events = modelState.events, let event = events.filter({$0.targetId == index+1}).first else { return }
+        guard let events = modelState.configuration?.events, let event = events.filter({$0.targetId == index+1}).first else { return }
 
         modelState.notificationHandler.broadcastNotification(notification: AlchemistLiteNotification(id: event.eventType, data: event.eventBody))
     }
@@ -54,14 +54,14 @@ extension TipsComponentViewModel {
     class ModelState {
         let notificationHandler: AlchemistLiteNotificationHandler
         var content: TipsComponent.Content
-        let events: [AlchemistLiteEvent]?
+        let configuration: AlchemistLiteEventConfiguration?
 
         init(notificationHandler: AlchemistLiteNotificationHandler,
              content: TipsComponent.Content,
-             events: [AlchemistLiteEvent]?) {
+             configuration: AlchemistLiteEventConfiguration?) {
             self.notificationHandler = notificationHandler
             self.content = content
-            self.events = events
+            self.configuration = configuration
         }
     }
 
@@ -76,6 +76,6 @@ extension TipsComponentViewModel {
     struct Build {
         let content: TipsComponent.Content
         let notificationHandler: AlchemistLiteNotificationHandler
-        let events: [AlchemistLiteEvent]?
+        let configuration: AlchemistLiteEventConfiguration?
     }
 }

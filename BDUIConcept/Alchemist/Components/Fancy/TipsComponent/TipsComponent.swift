@@ -14,7 +14,7 @@ class TipsComponent: AlchemistLiteUIComponent {
     var id: String
     var type: String
     var notificationHandler: AlchemistLiteNotificationHandler
-    var events: [AlchemistLiteEvent]?
+    var configuration: AlchemistLiteEventConfiguration?
 
     private(set) var content: Content
     private var currentView: TipsComponentView?
@@ -22,7 +22,7 @@ class TipsComponent: AlchemistLiteUIComponent {
     required init(config: AlchemistLiteUIComponentConfiguration) throws {
         self.id = config.component.id
         self.type = config.component.type
-        self.events = config.component.events
+        self.configuration = config.component.eventConfiguration
         guard let componentData = config.component.content else { throw AlchemistLiteError.componentDataMissing(component: AmountComponent.componentType)}
         do {
             self.content = try JSONDecoder().decode(Content.self, from: componentData)
@@ -36,7 +36,7 @@ class TipsComponent: AlchemistLiteUIComponent {
         if let viewtoReturn = currentView {
             return viewtoReturn
         }
-        let view = TipsComponentView(viewModel: TipsComponentViewModel(build: TipsComponentViewModel.Build(content: content, notificationHandler: notificationHandler, events: events)))
+        let view = TipsComponentView(viewModel: TipsComponentViewModel(build: TipsComponentViewModel.Build(content: content, notificationHandler: notificationHandler, configuration: configuration)))
         currentView = view
         return view
     }
